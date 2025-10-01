@@ -41,6 +41,13 @@
             <version>42.7.4</version>
         </dependency>
 
+        <!-- Base de données embarquée H2 pour développement local -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
         <!-- JPA pour la persistance -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
