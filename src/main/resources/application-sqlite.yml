@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:sqlite:./data/adaction.db
+    driver-class-name: org.sqlite.JDBC
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.community.dialect.SQLiteDialect
+    show-sql: true
+
+server:
+  port: 8080
+
+

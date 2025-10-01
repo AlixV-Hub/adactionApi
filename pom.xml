@@ -48,6 +48,21 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- SQLite JDBC driver -->
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.46.0.0</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Dialecte Hibernate pour SQLite -->
+        <dependency>
+            <groupId>com.github.gwenn</groupId>
+            <artifactId>sqlite-dialect</artifactId>
+            <version>0.1.2</version>
+        </dependency>
+
         <!-- JPA pour la persistance -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
