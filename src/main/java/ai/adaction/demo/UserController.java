@@ -1,4 +1,4 @@
-package Al.Adaction.demo;
+package ai.adaction.demo;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
