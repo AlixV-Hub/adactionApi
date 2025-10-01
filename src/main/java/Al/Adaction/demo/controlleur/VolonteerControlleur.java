@@ -1,7 +1,7 @@
-package Al.Adaction.demo.controlleur;
+package al.adaction.demo.controlleur;
 
-import Al.Adaction.demo.entity.VolonteerEntity;
-import Al.Adaction.demo.repository.VolonteerRepository;
+import al.adaction.demo.entity.VolonteerEntity;
+import al.adaction.demo.repository.VolonteerRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

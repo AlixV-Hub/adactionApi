@@ -1,4 +1,4 @@
-package Al.Adaction.demo;
+package al.adaction.demo;
 
 
 import org.springframework.boot.SpringApplication;

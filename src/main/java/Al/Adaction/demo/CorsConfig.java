@@ -1,4 +1,4 @@
-package Al.Adaction.demo.config;
+package al.adaction.demo;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
