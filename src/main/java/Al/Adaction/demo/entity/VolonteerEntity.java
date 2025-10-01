@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "volonteers")
-public class Volonteer {
+public class VolonteerEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class Volonteer {
     private LocalDate update_at;
 
     // Constructeur
-    public Volonteer() {
+    public VolonteerEntity() {
     }
 
     // Getters et Setters
