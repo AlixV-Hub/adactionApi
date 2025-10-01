@@ -1,4 +1,5 @@
-package Al.Adaction.demo;
+package Al.Adaction.demo.entity;
+
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
