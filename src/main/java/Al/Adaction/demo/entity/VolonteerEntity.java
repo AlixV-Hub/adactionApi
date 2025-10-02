@@ -1,10 +1,8 @@
 package al.adaction.demo.entity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import java.time.LocalDate;
+import jakarta.persistence.*;
+import org.hibernate.grammars.hql.HqlParser;
+
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -21,8 +19,19 @@ public class VolonteerEntity {
     private String email;
     private String password;
 
-    private LocalDate created_at;
-    private LocalDate update_at;
+    private LocalDateTime created_at;
+    private LocalDateTime update_at;
+
+
+    @PrePersist
+    protected void onCreate() {
+        this.created_at = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.update_at = LocalDateTime.now();
+    }
 
     // Constructeur
     public VolonteerEntity() {
@@ -77,19 +86,19 @@ public class VolonteerEntity {
         this.password = password;
     }
 
-    public LocalDate getCreated_at() {
+    public LocalDateTime getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(LocalDate created_at) {
+    public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
     }
 
-    public LocalDate getUpdate_at() {
+    public LocalDateTime getUpdate_at() {
         return update_at;
     }
 
-    public void setUpdate_at(LocalDate update_at) {
+    public void setUpdate_at(LocalDateTime update_at) {
         this.update_at = update_at;
     }
 }
