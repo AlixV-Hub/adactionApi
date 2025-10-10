@@ -1,8 +1,9 @@
 package al.adaction.demo.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "waste_collection")
@@ -24,8 +25,11 @@ public class CollectsEntity {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    // --- Getters & Setters ---
+    // Relation vers les items de déchets
+    @OneToMany(mappedBy = "collection", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<WasteCollectionItemsEntity> wasteCollectionItems;
 
+    // ----- Getters & Setters -----
     public Long getId() {
         return id;
     }
@@ -64,5 +68,13 @@ public class CollectsEntity {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<WasteCollectionItemsEntity> getWasteCollectionItems() {
+        return wasteCollectionItems;
+    }
+
+    public void setWasteCollectionItems(List<WasteCollectionItemsEntity> wasteCollectionItems) {
+        this.wasteCollectionItems = wasteCollectionItems;
     }
 }

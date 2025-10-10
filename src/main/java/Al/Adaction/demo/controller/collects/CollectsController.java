@@ -2,6 +2,7 @@ package al.adaction.demo.controller.collects;
 
 import al.adaction.demo.entity.CollectsEntity;
 import al.adaction.demo.service.collects.ICollectsService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -29,9 +30,11 @@ public class CollectsController {
     }
 
     @PostMapping
-    public CollectsEntity createCollect(@RequestBody CollectsEntity collect) {
-        return collectsService.save(collect);
+    public ResponseEntity<CollectsEntity> createCollect(@RequestBody CollectsEntity collect) {
+        CollectsEntity saved = collectsService.save(collect);
+        return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<CollectsEntity> updateCollect(@PathVariable Long id, @RequestBody CollectsEntity updatedCollect) {
