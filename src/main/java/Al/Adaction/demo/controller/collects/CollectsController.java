@@ -5,6 +5,7 @@ import al.adaction.demo.service.collects.ICollectsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +35,6 @@ public class CollectsController {
         CollectsEntity saved = collectsService.save(collect);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
-
 
     @PutMapping("/{id}")
     public ResponseEntity<CollectsEntity> updateCollect(@PathVariable Long id, @RequestBody CollectsEntity updatedCollect) {
