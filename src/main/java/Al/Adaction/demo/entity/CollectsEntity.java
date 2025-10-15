@@ -1,4 +1,5 @@
 package al.adaction.demo.entity;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.time.LocalDate;
@@ -17,7 +18,7 @@ public class CollectsEntity {
     private LocalDate collectionDate;
 
     @Column(name = "city_id", nullable = false)
-    private Long cityId;
+    private Long cityId;  // ✅ IMPORTANT: c'est cityId, pas city
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -41,22 +42,50 @@ public class CollectsEntity {
     }
 
     // ----- Getters & Setters -----
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public LocalDate getCollectionDate() { return collectionDate; }
-    public void setCollectionDate(LocalDate collectionDate) { this.collectionDate = collectionDate; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Long getCityId() { return cityId; }
-    public void setCityId(Long cityId) { this.cityId = cityId; }
+    public LocalDate getCollectionDate() {
+        return collectionDate;
+    }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    public void setCollectionDate(LocalDate collectionDate) {
+        this.collectionDate = collectionDate;
+    }
 
-    public LocalDateTime getUpdatedAt() { return updatedAt; }
-    public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+    public Long getCityId() {  // ✅ Cette méthode doit exister
+        return cityId;
+    }
 
-    public List<WasteCollectionItemsEntity> getWasteCollectionItems() { return wasteCollectionItems; }
+    public void setCityId(Long cityId) {
+        this.cityId = cityId;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public List<WasteCollectionItemsEntity> getWasteCollectionItems() {
+        return wasteCollectionItems;
+    }
+
     public void setWasteCollectionItems(List<WasteCollectionItemsEntity> wasteCollectionItems) {
         this.wasteCollectionItems = wasteCollectionItems;
         if (wasteCollectionItems != null) {

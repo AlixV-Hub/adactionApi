@@ -3,8 +3,8 @@ package al.adaction.demo.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "waste_collection_items")
-public class WasteCollectionItemsEntity {
+@Table(name = "waste_collection_volonteers")
+class WasteCollectionVolunteerEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,16 +15,13 @@ public class WasteCollectionItemsEntity {
     @JoinColumn(name = "collection_id", nullable = false)
     private CollectsEntity collection;
 
-    // Relation avec WasteTypesEntity
+    // Relation avec VolonteerEntity
     @ManyToOne
-    @JoinColumn(name = "waste_type_id", nullable = false)
-    private WasteTypesEntity wasteType;
-
-    @Column(nullable = false)
-    private Double quantity;
+    @JoinColumn(name = "volonteer_id", nullable = false)
+    private VolonteerEntity volunteer;
 
     // Constructeurs
-    public WasteCollectionItemsEntity() {}
+    public WasteCollectionVolunteerEntity() {}
 
     // Getters et setters
     public Long getId() {
@@ -43,19 +40,11 @@ public class WasteCollectionItemsEntity {
         this.collection = collection;
     }
 
-    public WasteTypesEntity getWasteType() {
-        return wasteType;
+    public VolonteerEntity getVolunteer() {
+        return volunteer;
     }
 
-    public void setWasteType(WasteTypesEntity wasteType) {
-        this.wasteType = wasteType;
-    }
-
-    public Double getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Double quantity) {
-        this.quantity = quantity;
+    public void setVolunteer(VolonteerEntity volunteer) {
+        this.volunteer = volunteer;
     }
 }
