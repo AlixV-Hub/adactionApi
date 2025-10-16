@@ -1,4 +1,4 @@
-package al.adaction.demo.controller.wastetypes;
+package al.adaction.demo.controller;
 
 import al.adaction.demo.entity.WasteTypesEntity;
 import al.adaction.demo.service.wastetypes.IWasteTypesService;

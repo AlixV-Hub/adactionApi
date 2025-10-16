@@ -3,11 +3,11 @@ package al.adaction.demo.dto;
 import java.time.LocalDate;
 import java.util.List;
 
-public class CollectRequest {
+public class CollectionRequest {
 
     private LocalDate collectionDate;
     private City city;
-    private List<Long> volonteerIds; // ✅ Ajouté
+    private List<Long> volonteerIds;
     private List<WasteCollectionItem> wasteCollectionItems;
 
     // --- Getters & Setters ---
@@ -23,15 +23,7 @@ public class CollectRequest {
     public List<WasteCollectionItem> getWasteCollectionItems() { return wasteCollectionItems; }
     public void setWasteCollectionItems(List<WasteCollectionItem> wasteCollectionItems) { this.wasteCollectionItems = wasteCollectionItems; }
 
-    public LocalDate getDate() {
-        return null;
-    }
-
-    public Long getCityId() {
-        return 0L;
-    }
-
-    // Classes internes pour la structure imbriquée
+    // --- Classes internes pour la structure imbriquée ---
     public static class WasteCollectionItem {
         private WasteType wasteType;
         private double quantity;

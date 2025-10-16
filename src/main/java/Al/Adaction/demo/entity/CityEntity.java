@@ -20,9 +20,7 @@ public class CityEntity {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt = LocalDateTime.now();
 
-    // Constructeurs
-    public CityEntity() {
-    }
+    public CityEntity() {}
 
     public CityEntity(String name) {
         this.name = name;
@@ -30,7 +28,7 @@ public class CityEntity {
         this.updatedAt = LocalDateTime.now();
     }
 
-    // Getters et Setters
+
     public Long getId() {
         return id;
     }

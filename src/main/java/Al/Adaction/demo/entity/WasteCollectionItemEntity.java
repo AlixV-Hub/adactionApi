@@ -1,21 +1,23 @@
 package al.adaction.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "waste_collection_items")
-public class WasteCollectionItemsEntity {
+public class WasteCollectionItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Relation avec CollectsEntity
+
     @ManyToOne
     @JoinColumn(name = "collection_id", nullable = false)
-    private CollectsEntity collection;
+    @JsonBackReference
+    private CollectionEntity collection;
 
-    // Relation avec WasteTypesEntity
+
     @ManyToOne
     @JoinColumn(name = "waste_type_id", nullable = false)
     private WasteTypesEntity wasteType;
@@ -23,10 +25,9 @@ public class WasteCollectionItemsEntity {
     @Column(nullable = false)
     private Double quantity;
 
-    // Constructeurs
-    public WasteCollectionItemsEntity() {}
+    public WasteCollectionItemEntity() {}
 
-    // Getters et setters
+
     public Long getId() {
         return id;
     }
@@ -35,11 +36,11 @@ public class WasteCollectionItemsEntity {
         this.id = id;
     }
 
-    public CollectsEntity getCollection() {
+    public CollectionEntity getCollection() {
         return collection;
     }
 
-    public void setCollection(CollectsEntity collection) {
+    public void setCollection(CollectionEntity collection) {
         this.collection = collection;
     }
 

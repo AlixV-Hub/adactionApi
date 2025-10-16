@@ -1,43 +1,42 @@
 package al.adaction.demo.entity;
-import jakarta.persistence.*;
-import org.hibernate.grammars.hql.HqlParser;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 
 @Entity
 @Table(name = "volonteers")
-public class VolonteerEntity {
+public class VolunteerEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @Column(name = "firstname")
     private String firstname;
+
+    @Column(name = "lastname")
     private String lastname;
+
+    @Column(name = "location")
     private String location;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "update_at")
+    private LocalDateTime updatedAt;
+
+    @Column(name = "password")
     private String password;
 
-    private LocalDateTime created_at;
-    private LocalDateTime update_at;
-
-
-    @PrePersist
-    protected void onCreate() {
-        this.created_at = LocalDateTime.now();
+    // Constructeur vide (obligatoire pour JPA)
+    public VolunteerEntity() {
     }
 
-    @PreUpdate
-    protected void onUpdate() {
-        this.update_at = LocalDateTime.now();
-    }
 
-    // Constructeur
-    public VolonteerEntity() {
-    }
 
-    // Getters et Setters
     public Long getId() {
         return id;
     }
@@ -78,27 +77,8 @@ public class VolonteerEntity {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
+    private void setPassword(String password) {
         this.password = password;
     }
 
-    public LocalDateTime getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
-    }
-
-    public LocalDateTime getUpdate_at() {
-        return update_at;
-    }
-
-    public void setUpdate_at(LocalDateTime update_at) {
-        this.update_at = update_at;
-    }
 }

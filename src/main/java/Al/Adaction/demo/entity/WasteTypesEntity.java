@@ -14,12 +14,12 @@ public class WasteTypesEntity {
     private String value;
 
     @Column(name = "label", nullable = false)
-    private String name; // correspond à label en base
+    private String name;
 
     @Column(name = "classname")
     private String classname;
 
-    // ----- Constructeurs -----
+
     public WasteTypesEntity() {
     }
 
@@ -29,7 +29,7 @@ public class WasteTypesEntity {
         this.classname = classname;
     }
 
-    // ----- Getters / Setters -----
+
     public Long getId() {
         return id;
     }
@@ -62,7 +62,7 @@ public class WasteTypesEntity {
         this.classname = classname;
     }
 
-    // ----- Alias description pour compatibilité -----
+
     public String getDescription() {
         return this.name;
     }
@@ -71,7 +71,7 @@ public class WasteTypesEntity {
         this.name = description;
     }
 
-    // ----- toString -----
+    //  toString pour la lisibilité des objets
     @Override
     public String toString() {
         return "WasteTypesEntity{" +
