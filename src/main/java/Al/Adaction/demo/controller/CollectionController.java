@@ -16,7 +16,7 @@ public class CollectionController {
 
     private final CollectionService collectionService;
 
-    public CollectionController(CollectionService collectionService) {  // ← Changé
+    public CollectionController(CollectionService collectionService) {
         this.collectionService = collectionService;
     }
 
@@ -32,26 +32,16 @@ public class CollectionController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping(consumes = "*/*")
-    public ResponseEntity<?> createCollection(@RequestBody String jsonBody) {
+    @PostMapping
+    public ResponseEntity<?> createCollection(@RequestBody CollectionEntity collection) {
         try {
-            System.out.println("📥 JSON reçu brut:");
-            System.out.println(jsonBody);
-
-            // Parser manuellement le JSON
-            com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
-            mapper.registerModule(new com.fasterxml.jackson.datatype.jsr310.JavaTimeModule());
-
-            CollectionEntity collection = mapper.readValue(jsonBody, CollectionEntity.class);
-
-            System.out.println("📥 Après parsing:");
+            System.out.println("📥 Requête POST reçue sur /api/collections");
             System.out.println("   Date: " + collection.getCollectionDate());
-            // ✅ CORRECTION ICI - utilisez la méthode getCityId() que nous avons ajoutée
             System.out.println("   CityId: " + (collection.getCity() != null ? collection.getCity().getId() : "null"));
             System.out.println("   Items: " + (collection.getWasteCollectionItems() != null
                     ? collection.getWasteCollectionItems().size() : 0));
 
-            CollectionEntity saved = collectionService.save(collection);
+            CollectionEntity saved = collectionService.createCollection(collection);
 
             System.out.println("✅ Collecte sauvegardée avec ID: " + saved.getId());
             return new ResponseEntity<>(saved, HttpStatus.CREATED);

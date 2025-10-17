@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +42,11 @@ public class CollectionService {
         if (collection.getWasteCollectionItems() != null && !collection.getWasteCollectionItems().isEmpty()) {
             logger.debug("Nombre d'items à ajouter: {}", collection.getWasteCollectionItems().size());
 
-            collection.getWasteCollectionItems().forEach(item -> {
+            List<WasteCollectionItemEntity> itemsCopy = new ArrayList<>(collection.getWasteCollectionItems());
+
+            collection.getWasteCollectionItems().clear();
+
+            itemsCopy.forEach(item -> {
                 if (item != null && item.getWasteType() != null) {
                     collection.addWasteCollectionItem(item);
                     logger.debug("Item ajouté - WasteType ID: {}, Quantité: {} kg",
@@ -212,7 +217,6 @@ public class CollectionService {
                             "Chaque item doit avoir un type de déchet"
                     );
                 }
-                // ✅ Quantité peut être 0 ou positive
                 if (item.getQuantity() == null || item.getQuantity() < 0) {
                     throw new ResponseStatusException(
                             HttpStatus.BAD_REQUEST,
@@ -224,25 +228,29 @@ public class CollectionService {
     }
 
     public List<CollectionEntity> findAll() {
-        return List.of();
+        return collectionRepository.findAll();
     }
 
     public Optional<CollectionEntity> findById(Long id) {
-        return Optional.empty();
+        return collectionRepository.findById(id);
     }
 
+    @Transactional
     public CollectionEntity save(CollectionEntity collection) {
-        return collection;
+        return collectionRepository.save(collection);
     }
 
+    @Transactional
     public CollectionEntity update(Long id, CollectionEntity updatedCollection) {
-        return updatedCollection;
+        return updateCollection(id, updatedCollection);
     }
 
     public boolean existsById(Long id) {
-        return false;
+        return collectionRepository.existsById(id);
     }
 
+    @Transactional
     public void deleteById(Long id) {
+        collectionRepository.deleteById(id);
     }
 }

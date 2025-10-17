@@ -1,6 +1,6 @@
 package al.adaction.demo.service;
 
-import al.adaction.demo.dto.City;
+import al.adaction.demo.dto.CityRequest;
 import al.adaction.demo.entity.CityEntity;
 import al.adaction.demo.repository.CityRepository;
 import org.springframework.stereotype.Service;
@@ -31,7 +31,7 @@ public class CityService {
         return cityRepository.save(city);
     }
 
-    public List<City> getAllCities() {
+    public List<CityRequest> getAllCities() {
         return List.of();
     }
 }

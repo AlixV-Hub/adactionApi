@@ -1,7 +1,6 @@
 package al.adaction.demo.controller;
 
-import al.adaction.demo.dto.City;
-import al.adaction.demo.entity.CityEntity;
+import al.adaction.demo.dto.CityRequest;
 import al.adaction.demo.service.CityService;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +18,7 @@ public class CityController {
     }
 
     @GetMapping
-    public List<City> getAllCities() {
+    public List<CityRequest> getAllCities() {
         return cityService.getAllCities();
     }
 }
