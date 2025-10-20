@@ -1,6 +1,9 @@
 package al.adaction.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +17,9 @@ public class CollectionEntity {
     private Long id;
 
     @Column(name = "collection_date", nullable = false)
-    private LocalDateTime collectionDate;
+    private LocalDate collectionDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "city_id", nullable = false)
     private CityEntity city;
 
@@ -29,15 +32,13 @@ public class CollectionEntity {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-// relations
+    // Relations
     @OneToMany(mappedBy = "collection", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<WasteCollectionItemEntity> wasteCollectionItems = new ArrayList<>();
 
     @OneToMany(mappedBy = "collection", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<WasteVolunteerCollectionEntity> volunteerCollections = new ArrayList<>();
-
-
-    //Gestion automatique des dates et heures
 
     @PrePersist
     protected void onCreate() {
@@ -53,27 +54,22 @@ public class CollectionEntity {
         updatedAt = LocalDateTime.now();
     }
 
-
     public CollectionEntity() {}
 
-    public CollectionEntity(LocalDateTime collectionDate, CityEntity city) {
+    public CollectionEntity(LocalDate collectionDate, CityEntity city) {
         this.collectionDate = collectionDate;
         this.city = city;
     }
 
-
-
-
     public void addWasteCollectionItem(WasteCollectionItemEntity item) {
-        wasteCollectionItems.add(item); // Côté parent
-        item.setCollection(this); // Côté enfant
+        wasteCollectionItems.add(item);
+        item.setCollection(this);
     }
 
     public void removeWasteCollectionItem(WasteCollectionItemEntity item) {
-        wasteCollectionItems.remove(item); // On retire de la collection
-        item.setCollection(null); // On casse la référence parent sinon JPA ne sait pas à quelle collection l'item appartient.
+        wasteCollectionItems.remove(item);
+        item.setCollection(null);
     }
-
 
     public boolean isPlanned() {
         return "PLANNED".equals(status);
@@ -90,8 +86,6 @@ public class CollectionEntity {
     public boolean isCancelled() {
         return "CANCELLED".equals(status);
     }
-
-
 
     public void start() {
         if (!isPlanned()) {
@@ -118,7 +112,7 @@ public class CollectionEntity {
         return city != null ? city.getId() : null;
     }
 
-
+    // Getters et Setters
     public Long getId() {
         return id;
     }
@@ -127,11 +121,11 @@ public class CollectionEntity {
         this.id = id;
     }
 
-    public LocalDateTime getCollectionDate() {
+    public LocalDate getCollectionDate() {
         return collectionDate;
     }
 
-    public void setCollectionDate(LocalDateTime collectionDate) {
+    public void setCollectionDate(LocalDate collectionDate) {
         this.collectionDate = collectionDate;
     }
 

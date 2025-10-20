@@ -40,7 +40,6 @@ public class CollectionController {
             System.out.println("   CityId: " + (collection.getCity() != null ? collection.getCity().getId() : "null"));
             System.out.println("   Items: " + (collection.getWasteCollectionItems() != null
                     ? collection.getWasteCollectionItems().size() : 0));
-
             CollectionEntity saved = collectionService.createCollection(collection);
 
             System.out.println("✅ Collecte sauvegardée avec ID: " + saved.getId());

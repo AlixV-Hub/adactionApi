@@ -31,11 +31,8 @@ public class VolunteerEntity {
     @Column(name = "password")
     private String password;
 
-    // Constructeur vide (obligatoire pour JPA)
     public VolunteerEntity() {
     }
-
-
 
     public Long getId() {
         return id;

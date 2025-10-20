@@ -29,8 +29,6 @@ public class VolunteerController {
 
     @GetMapping("/{id}")
     public ResponseEntity<VolunteerEntity> getVolunteerById(@PathVariable Long id) {
-        // Le service lance déjà une exception si non trouvé (ResponseStatusException)
-        // Spring gère automatiquement le code 404
         VolunteerEntity volunteer = volunteerService.getVolunteerById(id);
         return ResponseEntity.ok(volunteer);
     }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -32,6 +33,11 @@ public class CityService {
     }
 
     public List<CityRequest> getAllCities() {
-        return List.of();
+        List<CityEntity> cities = cityRepository.findAll();
+
+        //  CityEntity en CityRequest (DTO)
+        return cities.stream()
+                .map(city -> new CityRequest(city.getId(), city.getName()))
+                .collect(Collectors.toList());
     }
 }

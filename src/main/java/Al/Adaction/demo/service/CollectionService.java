@@ -81,7 +81,7 @@ public class CollectionService {
 
         CollectionEntity existing = getCollectionById(id);
 
-        existing.setCollectionDate(updated.getCollectionDate());
+        updated.setCollectionDate(existing.getCollectionDate());
         existing.setStatus(updated.getStatus());
 
         if (updated.getCity() != null) {
